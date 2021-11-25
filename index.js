@@ -1,21 +1,30 @@
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
-const app = express();
+const db = require('./mongodb')
+const buyerRouter = require('./routes/router')
 
-mongoose.connect('mongodb://localhost:27017');
-mongoose.Promise = global.Promise;
+const app = express()
+const apiPort = 3001
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error: '));
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors())
+app.use(bodyParser.json())
 
-app.use(express.json());
-app.use('/api',require('./routes/routes'));
 
-app.use(function(err,req,res,next){
-  res.status(422).send({error: err.message});
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+app.post('/buyers', buyerRouter);
+app.get('/buyers', buyerRouter);
+
+app.get('/', (req, res) => {
+    res.send('Hello World!')
 })
 
-app.listen(3001, function() {
-  console.log('Listening on Port 3001');
+app.use('/buyers', function(req, res, next) {
+  console.log("New Request...");
+  next();
 })
+
+
+app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))

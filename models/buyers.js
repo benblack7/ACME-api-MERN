@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const BuyersSchema = new Schema({
   name: {
     type: String,
-    required: [true, 'Name required']
+    required: true
   },
   interests: {
     type: String,
-    required: [true, 'Interests are required']
+    required: true
   },
   location: {
     type: Number,
-    required: [true, 'Location is required']
+    required: false
   }
 })
 
