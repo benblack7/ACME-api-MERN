@@ -14,8 +14,6 @@ app.use(bodyParser.json())
 
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
-// app.post('/buyers', buyerRouter);
-// app.get('/buyers', buyerRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
