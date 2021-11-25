@@ -14,8 +14,8 @@ app.use(bodyParser.json())
 
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
-app.post('/buyers', buyerRouter);
-app.get('/buyers', buyerRouter);
+// app.post('/buyers', buyerRouter);
+// app.get('/buyers', buyerRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
@@ -25,6 +25,9 @@ app.use('/buyers', function(req, res, next) {
   console.log("New Request...");
   next();
 })
+
+app.use('/buyers', buyerRouter);
+app.use('/buyers', buyerRouter);
 
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
