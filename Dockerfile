@@ -1,6 +1,6 @@
 FROM node:17
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /Users/Ben/apps/DockerImages/
 # Install app dependencies
 COPY package*.json ./
 RUN npm install
