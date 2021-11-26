@@ -11,7 +11,7 @@ const BuyersSchema = new Schema({
     required: true
   },
   location: {
-    type: Number,
+    type: String,
     required: false
   }
 })
